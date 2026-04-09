@@ -1,38 +1,171 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  background-color: antiquewhite;
+  height: 100vh;
+}
+
+* {
+  cursor: default;
+}
+
+.title {
+  font-size: x-large;
+  text-align: center;
+  background-color: aliceblue;
+  padding: 20px 0;
+}
+
+.main-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  margin-top: 10px;
+  column-gap: 10px;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: beige;
+  margin-top: -10px;
+}
+.sidebar > div {
+  padding: 5px 5px;
+  cursor: pointer;
+}
+.sidebar > div:active {
+  border: 1px solid blue;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  margin-right: 10px;
+  height: 70vh;
+  overflow: auto;
+  margin-bottom: 10px;
+  width: 80vw;
+}
+
+.product-card {
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid rgba(136, 131, 131, 0.315);
+  box-shadow: 2px 2px 2px rgba(181, 172, 172, 0.53);
+  cursor: pointer;
+  background-color: white;
+  max-height: 300px;
+}
+
+.search {
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 8fr 1fr 1fr;
+  column-gap: 20px;
+  width: 80vw;
+}
+.search > input {
+  font-size: 16px;
+  padding: 4px;
+  border: 1px solid black;
+  height: 20px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.search > button {
+  width: fit-content;
+  padding: 0px 20px;
+}
+
+.product-card > img {
+  max-width: 100%;
+  height: 100px;
+  object-fit: contain;
+}
+
+button {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+.alert-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.custom-alert {
+  background-color: aquamarine;
+  padding: 2px 20px;
+  border-radius: 4px;
+}
+
+.login-title {
+  margin: 10px;
+  padding: 10px;
+  font-size: x-large;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.login-form {
+  width: 400px;
+  height: auto;
+  margin: auto;
+  padding: 40px;
+  margin-top: 20vh;
+  padding-bottom: 60px;
+  text-align: center;
+
+  border: 1.5px solid rgba(123, 121, 121, 0.226);
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgba(133, 131, 131, 0.128);
+  background-color: aliceblue;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 10px;
+}
+
+input {
+  width: 200px;
+  height: 20px;
+}
+
+label {
+  color: rgb(112, 106, 106);
+}
+
+.submit-button {
+  display: flex;
+  justify-content: end;
+}
+
+.submit-button > button {
+  padding: 8px 30px;
+  background-color: rgb(34, 122, 245);
   color: white;
+  border: none;
+  border-radius: 4px;
+  transition: opacity 0.15s;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.submit-button > button:hover {
+  opacity: 0.9;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.submit-button > button:active {
+  opacity: 0.85;
 }

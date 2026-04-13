@@ -9,7 +9,8 @@ import ProductCard from "./ProductCard";
 import axios from "axios";
 import { useProducts } from "../hooks/useProducts";
 const ProductsList = ({ onlyFavourites }) => {
-  const abortControllerRef = useRef(null);
+  const height = useRef(0);
+  console.log(height);
   const {
     filteredProducts,
     setFilteredProducts,
@@ -17,6 +18,8 @@ const ProductsList = ({ onlyFavourites }) => {
     setFavourites,
     loading,
     setLoading,
+    setPageNo,
+    pageNo,
   } = useProducts({ onlyFavourites });
   const [query, setQuery] = useState("");
 
@@ -31,6 +34,15 @@ const ProductsList = ({ onlyFavourites }) => {
     }
   }, [favourites]);
 
+  useEffect(() => {
+    console.log(pageNo, " pageNo");
+    console.log(height.current, " height");
+    window.scrollTo({
+      top: 2000,
+      behavior: "smooth",
+    });
+  }, [pageNo]);
+
   const sortHandler = useCallback((isAscending) => {
     let currProducts = [...filteredProducts];
     currProducts.sort((a, b) => {
@@ -39,8 +51,18 @@ const ProductsList = ({ onlyFavourites }) => {
     setFilteredProducts(currProducts);
   });
   const renderProducts = filteredProducts.filter((product) =>
-    product?.title?.toLowerCase()?.includes(query.toLowerCase()),
+    product?.customerName?.toLowerCase()?.includes(query.toLowerCase()),
   );
+  const scrollHandler = (e) => {
+    if (
+      e.target.offsetHeight + e.target.scrollTop >
+      e.target.scrollHeight * 0.5
+    ) {
+      console.log(e.target.scrollTop);
+      height.current = e.target.scrollTop;
+      setPageNo((page) => page + 1);
+    }
+  };
 
   function debounce(func, delay) {
     let timer;
@@ -76,6 +98,9 @@ const ProductsList = ({ onlyFavourites }) => {
             setQuery(e.target.value);
             x();
           }}
+          style={{
+            cursor: "pointer",
+          }}
         />
         {/* <button onClick={clickHandler}>search</button> */}
         <button
@@ -93,22 +118,19 @@ const ProductsList = ({ onlyFavourites }) => {
           sort descending
         </button>
       </div>
-      {loading > 0 && <div>Loading...</div>}
-      {!loading && renderProducts.length === 0 && <div>No Products found</div>}
-      {!loading && (
-        <div className="main-content">
-          {renderProducts?.map((product) => {
-            return (
-              <ProductCard
-                key={product?.id}
-                {...product}
-                favourites={favourites}
-                setFavourites={setFavourites}
-              />
-            );
-          })}
-        </div>
-      )}
+      {/* {!loading && renderProducts.length === 0 && <div>No Products found</div>} */}
+      <div onScroll={scrollHandler} className="main-content">
+        {renderProducts?.map((product) => {
+          return (
+            <ProductCard
+              key={product?.id}
+              {...product}
+              favourites={favourites}
+              setFavourites={setFavourites}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

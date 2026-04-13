@@ -4,7 +4,13 @@ import {createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './Layout';
 import Favourites from './pages/Favourites';
 import Login from './pages/Login';
+import ProductsList from './components/ProductsList';
+import AutoComplete from './components/Autocomplete'
+import InfiniteScroll from './components/InfiniteScroll';
+import { useTheme } from './context/theme-context';
 function App() {
+  const {webTheme , toggleTheme}  = useTheme();
+  console.log(webTheme)
   const router = createBrowserRouter( [
     {
       path: "/",
@@ -27,8 +33,12 @@ function App() {
     }
   ])
   return (
-    <RouterProvider router = {router}>
-    </RouterProvider>
+    <div>
+      <InfiniteScroll/>
+      {/* <ProductsList/> */}
+    </div>
+    // <RouterProvider router = {router}>
+    // </RouterProvider>
   );
 }
 

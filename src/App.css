@@ -1,7 +1,22 @@
+[data-theme="light"] {
+  --bg-color: beige;
+  --text-color: #333333;
+  --heading-color: #444444;
+}
+[data-theme="dark"] {
+  --bg-color: #333333;
+  --text-color: #ffffff;
+  --heading-color: #dddddd;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
 .app {
   display: flex;
   flex-direction: column;
-  background-color: antiquewhite;
+  background-color: var(--bg-color);
   height: 100vh;
 }
 
@@ -12,7 +27,7 @@
 .title {
   font-size: x-large;
   text-align: center;
-  background-color: aliceblue;
+  background-color: var(--bg-color);
   padding: 20px 0;
 }
 
@@ -27,7 +42,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: beige;
+  background-color: var(--bg-color);
   margin-top: -10px;
 }
 .sidebar > div {
@@ -168,4 +183,29 @@ label {
 
 .submit-button > button:active {
   opacity: 0.85;
+}
+
+.input-box {
+  width: 15rem;
+  box-sizing: border-box;
+}
+
+.input-box:focus {
+  cursor: text;
+}
+
+.options-list {
+  width: 15rem;
+  border: 1px solid black;
+}
+
+.option {
+  border-bottom: 1px solid rgba(122, 114, 114, 0.719);
+}
+
+* {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }

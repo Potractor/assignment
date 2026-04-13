@@ -3,8 +3,8 @@ import Alert from "./Alert";
 const ProductCard = ({
   id,
   image,
-  title,
-  price,
+  customerName,
+  amount,
   deleteHandler,
   favourites,
   setFavourites,
@@ -25,14 +25,15 @@ const ProductCard = ({
   return (
     <div className="product-card" key={id}>
       <img src={image} />
-      <div>{title}</div>
-      <div>price - {price} $</div>
+      <div>{customerName}</div>
+      <div>price - {amount} $</div>
       <div>
         <input
           type="checkbox"
           onChange={(e) => {
             favouriteHandler(id, e.target.checked);
           }}
+          style={{ cursor: "pointer" }}
           checked={favourites.find((item) => item?.id == id)?.toggled}
         />{" "}
         favourite

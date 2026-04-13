@@ -14,6 +14,7 @@ const InfiniteScrollTable = ({ list }) => {
         width: "500px",
         overflow: "scroll",
         position: "relative",
+        backgroundColor: "orange",
       }}
     >
       <div
@@ -22,6 +23,7 @@ const InfiniteScrollTable = ({ list }) => {
           backgroundColor: "white",
           position: "absolute",
           width: "100%",
+          backgroundColor: "orange",
           textAlign: "center",
           top: 80 * item,
         }}
